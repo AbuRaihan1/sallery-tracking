@@ -1,9 +1,10 @@
 import React from "react";
+import Income from "../../Components/Income/Income";
 
 const Home = () => {
   return (
-    <div>
-      <h2>home</h2>
+    <div className="">
+      <Income />
     </div>
   );
 };
