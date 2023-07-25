@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div className="bg-gray-100 w-full py-3 shadow-lg">
+    <div className="bg-white w-full py-3 shadow-lg">
       <nav className="flex justify-between items-center mx-5">
         <Link to="/" className="text-3xl">
           Income Tracker

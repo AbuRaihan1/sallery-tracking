@@ -1,5 +1,5 @@
 import React from "react";
-
+import incomeImg from "../../images/income.jpg";
 const Income = () => {
   return (
     <div className="container m-auto">
@@ -7,34 +7,40 @@ const Income = () => {
         Credit your salary here
       </h2>
 
-      <form action="" className="shadow bg-gray-50 m-5 py-6 px-4">
-       <div className="space-y-4">
-       <div>
-          <label htmlFor="incomeSource" className=" font-bold text-xl">
-            Income Source
-          </label>
-          <input
-            type="text"
-            className=" block border p-2 rounded w-1/2 outline-none  focus:border-orange-500"
-            placeholder="Description"
-            name="incomeSource"
-          />
+      <form
+        action=""
+        className="bg-white rounded-md shadow m-5 py-6 px-4 md:flex justify-between items-center gap-2"
+      >
+         
+        <div className="space-y-4 w-full">
+          <div>
+            <label htmlFor="incomeSource" className=" font-bold text-xl">
+              Income Source
+            </label>
+            <input
+              type="text"
+              className=" block border p-2 rounded w-full outline-none  focus:border-orange-500 "
+              placeholder="Description"
+              name="incomeSource"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="incomeSalary" className=" font-bold text-xl">
+              Income Salary
+            </label>
+            <input
+              type="text "
+              className=" block border p-2 rounded w-full outline-none focus:border-orange-500"
+              placeholder="amount"
+              name="incomeSalary"
+            />
+          </div>
+
+          <button className="primary-button w-full"> Submit</button>
         </div>
 
-        <div>
-          <label htmlFor="incomeSalary" className=" font-bold text-xl">
-            Income Salary
-          </label>
-          <input
-            type="text "
-            className=" block border p-2 rounded w-1/2 outline-none focus:border-orange-500"
-            placeholder="amount"
-            name="incomeSalary"
-          />
-        </div>
-
-        <button className="primary-button"> Submit</button>
-       </div>
+        <img src={incomeImg} alt="" className=" w-full md:w-1/2" />
       </form>
     </div>
   );
