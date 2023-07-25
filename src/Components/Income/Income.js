@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import incomeImg from "../../images/income.jpg";
 const Income = () => {
-  //   const [incomeData, setIncomeData] = useState([]);
   const [incomeData, setIncomeData] = useState(
     JSON.parse(localStorage.getItem("incomeData")) || []
   );
@@ -86,7 +85,7 @@ const Income = () => {
       </form>
 
       <div
-        className="bg-white container rounded-md py-6 px-5
+        className="bg-white container rounded-md py-6 px-5 mt-5
       "
       >
         <h2 className="text-3xl pb-5 text-center font-bold">
@@ -98,21 +97,24 @@ const Income = () => {
             No credits or transactions recorded yet.
           </p>
         ) : (
-          <div>
+          <div className="flex flex-col items-center">
             {incomeData.map((income, idx) => (
-              <div className="flex gap-4 justify-center items-center" key={idx}>
-                <p className="font-bold text-xl">{income.source}:</p>
-                <p className="font-bold text-xl">${income.salary}</p>
+              <div
+                className="flex gap-4 justify-center items-center bg-gray-200 rounded md:w-1/3 m-1 w-full"
+                key={idx}
+              >
+                <p className="text-xl">{income.source}:</p>
+                <p className="text-xl">${income.salary}</p>
               </div>
             ))}
           </div>
         )}
-        <hr />
+
         <div className="m-auto text-center">
           {incomeData.length > 0 && (
             <div className="flex justify-center items-center gap-4 py-3">
-              <h2 className="font-bold"> Your total income:</h2>
-              <p className="font-bold text-xl">${calculateTotalSalary()}</p>
+              <h2 className="font-bold text-3xl"> Your total income:</h2>
+              <p className="font-bold text-3xl">${calculateTotalSalary()}</p>
             </div>
           )}
         </div>

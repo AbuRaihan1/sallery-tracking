@@ -13,7 +13,7 @@ const Header = () => {
             to="/"
             className="font-bold hover:bg-slate-200 px-3 py-1 rounded-md"
           >
-            Home
+            Income
           </Link>
           <Link
             to="/expense"
