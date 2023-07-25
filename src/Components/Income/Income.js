@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import incomeImg from "../../images/income.jpg";
 const Income = () => {
-  const [incomeStatement, setIncomeStatement] = useState([]);
-  const [incomeSource, setIncomeSource] = useState("");
-  const [incomeSalary, setIncomeSalary] = useState("");
+  const [incomeData, setIncomeData] = useState([]);
 
   const submitIncomeHandler = (e) => {
     e.preventDefault();
     const form = e.target;
     const incomeSource = form.incomeSource.value;
     const incomeSalary = form.incomeSalary.value;
-    setIncomeSalary(incomeSalary);
-    setIncomeSource(incomeSource);
+
+    const newIncome = {
+      salary: incomeSalary,
+      source: incomeSource,
+    };
+    setIncomeData([...incomeData, newIncome]);
+    form.reset();
   };
 
   return (
@@ -35,6 +38,7 @@ const Income = () => {
               className=" block border p-2 rounded w-full outline-none  focus:border-orange-500 "
               placeholder="Description"
               name="incomeSource"
+              required
             />
           </div>
 
@@ -47,6 +51,7 @@ const Income = () => {
               className=" block border p-2 rounded w-full outline-none focus:border-orange-500"
               placeholder="amount"
               name="incomeSalary"
+              required
             />
           </div>
 
@@ -64,15 +69,19 @@ const Income = () => {
           Your income statement
         </h2>
 
-        {incomeSource && incomeSalary ? (
-          <div className="flex gap-4 justify-center items-center">
-            <p className="font-bold text-xl">{incomeSource}:</p>
-            <p className="font-bold text-xl">{incomeSalary}</p>
-          </div>
+        {incomeData.length === 0 ? (
+          <p className="text-2xl pb-5 text-center">
+            No credits or transactions recorded yet.
+          </p>
         ) : (
-          <h2 className="text-2xl pb-5 text-center">
-            You don't have any income
-          </h2>
+          <div>
+            {incomeData.map((income, idx) => (
+              <div className="flex gap-4 justify-center items-center" key={idx}>
+                <p className="font-bold text-xl">{income.source}:</p>
+                <p className="font-bold text-xl">${income.salary}</p>
+              </div>
+            ))}
+          </div>
         )}
       </div>
     </div>
