@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import incomeImg from "../../images/income.jpg";
 const Income = () => {
-  const [incomeData, setIncomeData] = useState([]);
+  //   const [incomeData, setIncomeData] = useState([]);
+  const [incomeData, setIncomeData] = useState(
+    JSON.parse(localStorage.getItem("incomeData")) || []
+  );
 
   const submitIncomeHandler = (e) => {
     e.preventDefault();
@@ -17,6 +20,27 @@ const Income = () => {
     form.reset();
   };
 
+  // Function to calculate the total salary
+  const calculateTotalSalary = () => {
+    let totalSalary = 0;
+    incomeData.forEach((income) => {
+      totalSalary += Number(income.salary);
+    });
+    return totalSalary;
+  };
+
+  // keep data in localstorage for accessibility
+  useEffect(() => {
+    localStorage.setItem("incomeData", JSON.stringify(incomeData));
+  }, [incomeData]);
+
+  // get data from localstorage for showing in website
+  useEffect(() => {
+    const storedIncomeData = JSON.parse(localStorage.getItem("incomeData"));
+    if (storedIncomeData) {
+      setIncomeData(storedIncomeData);
+    }
+  }, []);
   return (
     <div className="container m-auto">
       <h2 className="text-3xl text-center py-5 font-bold">
@@ -83,6 +107,15 @@ const Income = () => {
             ))}
           </div>
         )}
+        <hr />
+        <div className="m-auto text-center">
+          {incomeData.length > 0 && (
+            <div className="flex justify-center items-center gap-4 py-3">
+              <h2 className="font-bold"> Your total income:</h2>
+              <p className="font-bold text-xl">${calculateTotalSalary()}</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
