@@ -3,7 +3,7 @@ import Income from "../../Components/Income/Income";
 
 const Home = () => {
   return (
-    <div className="bg-slate-200 h-screen">
+    <div className="bg-slate-200 h-full pb-5">
       <Income />
     </div>
   );
