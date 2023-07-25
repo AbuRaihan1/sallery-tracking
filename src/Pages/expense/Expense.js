@@ -3,8 +3,9 @@ import expenseImg from "../../images/expnse.jpg";
 const Expense = () => {
   const [expenseAmount, setExpenseAmount] = useState("");
   const [expenseDescription, setExpenseDescription] = useState("");
+
   const [expenseData, setExpenseData] = useState(
-    JSON.parse(localStorage.getItem("expenseData") || [])
+    JSON.parse(localStorage.getItem("expenseData")) || []
   );
 
   const submitExpenseHandler = (e) => {
@@ -33,18 +34,20 @@ const Expense = () => {
     localStorage.setItem("expenseData", JSON.stringify(expenseData));
   }, [expenseData]);
 
-  // get data from localstorage for showing in website
   useEffect(() => {
-    const storedExpenseData = JSON.parse(localStorage.getItem("expenseData"));
+    const storedExpenseData = localStorage.getItem("expenseData");
     if (storedExpenseData) {
-      setExpenseData(storedExpenseData);
+      setExpenseData(JSON.parse(storedExpenseData));
     }
   }, []);
 
   // clearing all data from Local Storage
   const handleClearExpenseAllData = () => {
-    localStorage.removeItem("expenseData");
-    setExpenseData([]);
+    const getStoredData = localStorage.getItem("expenseData");
+    if (getStoredData) {
+      localStorage.removeItem("expenseData");
+      setExpenseData([]);
+    }
   };
 
   return (
