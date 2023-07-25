@@ -40,16 +40,23 @@ const Income = () => {
       setIncomeData(storedIncomeData);
     }
   }, []);
+
+  // clearing all data from Local Storage
+  const handleClearIncomeAllData = () => {
+    localStorage.removeItem("incomeData");
+    setIncomeData([]);
+  };
+
   return (
     <div className="container m-auto">
-      <h2 className="text-3xl text-center py-5 font-bold">
+      <h2 className="text-3xl text-center py-5 pt-7 font-bold">
         Credit your salary here
       </h2>
 
       <form
         onSubmit={submitIncomeHandler}
         action=""
-        className="bg-white rounded-md my-5 py-6 px-4 md:flex justify-between items-center gap-2"
+        className="bg-white rounded-md my-5 mb-14 py-6 px-4 md:flex justify-between items-center gap-2 "
       >
         <div className="space-y-4 w-full">
           <div>
@@ -67,7 +74,7 @@ const Income = () => {
 
           <div>
             <label htmlFor="incomeSalary" className=" font-bold text-xl">
-              Income Salary
+              Income money
             </label>
             <input
               type="text "
@@ -85,7 +92,7 @@ const Income = () => {
       </form>
 
       <div
-        className="bg-white container rounded-md py-6 px-5 mt-5
+        className="bg-white container rounded-md py-6 px-5 border
       "
       >
         <h2 className="text-3xl pb-5 text-center font-bold">
@@ -116,6 +123,17 @@ const Income = () => {
               <h2 className="font-bold text-3xl"> Your total income:</h2>
               <p className="font-bold text-3xl">${calculateTotalSalary()}</p>
             </div>
+          )}
+
+          {incomeData.length > 0 ? (
+            <button
+              onClick={handleClearIncomeAllData}
+              className="bg-red-600 py-1 px-5 text-white font-bold rounded hover:bg-red-800"
+            >
+              Clear all income
+            </button>
+          ) : (
+            ""
           )}
         </div>
       </div>
