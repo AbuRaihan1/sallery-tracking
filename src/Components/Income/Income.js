@@ -130,7 +130,7 @@ const Income = () => {
               onClick={handleClearIncomeAllData}
               className="bg-red-600 py-1 px-5 text-white font-bold rounded hover:bg-red-800"
             >
-              Clear all income
+              Clear All Income
             </button>
           ) : (
             ""

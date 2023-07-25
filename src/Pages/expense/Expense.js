@@ -41,17 +41,22 @@ const Expense = () => {
     }
   }, []);
 
+  // clearing all data from Local Storage
+  const handleClearExpenseAllData = () => {
+    localStorage.removeItem("incomeData");
+    setExpenseData([]);
+  };
 
   return (
     <div className="container m-auto ">
-      <h2 className="text-3xl text-center py-5 font-bold">
+      <h2 className="text-3xl text-center py-5 pt-7 font-bold">
         Expense your money
       </h2>
 
       <form
         onSubmit={submitExpenseHandler}
         action=""
-        className="bg-white rounded-md my-5 py-6 px-4 md:flex flex-row-reverse justify-between items-center gap-2"
+        className="bg-white rounded-md my-5 mb-16 py-6 px-4 md:flex flex-row-reverse justify-between items-center gap-2"
       >
         <div className="space-y-4 w-full">
           <div>
@@ -98,7 +103,7 @@ const Expense = () => {
 
         {expenseData.length === 0 ? (
           <p className="text-2xl pb-5 text-center">
-            No expensec or transactions recorded yet.
+            No expenses or transactions recorded yet.
           </p>
         ) : (
           <div className="flex flex-col items-center">
@@ -120,6 +125,17 @@ const Expense = () => {
               <h2 className="font-bold text-2xl"> Your total expenses:</h2>
               <p className="font-bold text-2xl">${calculateTotalExpenses()}</p>
             </div>
+          )}
+
+          {expenseData.length > 0 ? (
+            <button
+              onClick={handleClearExpenseAllData}
+              className="bg-red-600 py-1 px-5 text-white font-bold rounded hover:bg-red-800"
+            >
+              Clear All Expense
+            </button>
+          ) : (
+            ""
           )}
         </div>
       </div>
