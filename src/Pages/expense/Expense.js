@@ -43,7 +43,7 @@ const Expense = () => {
 
   // clearing all data from Local Storage
   const handleClearExpenseAllData = () => {
-    localStorage.removeItem("incomeData");
+    localStorage.removeItem("expenseData");
     setExpenseData([]);
   };
 
